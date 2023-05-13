@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Let's Chat</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<form id="join-form">
+			<label for="invite__link">Enter invite link (without whitespace)</label>
+			<input type="text" required name="invite__link" class="invite__link" />
+			<button class="btn">join room</button>
+		</form>
+
+		<script>
+			const form = document.querySelector('#join-form');
+
+			form.addEventListener('submit', (e) => {
+				e.preventDefault();
+				let inviteCode = e.target.invite__link.value;
+				inviteCode = inviteCode.replace(/\s/g, '');
+				window.location = `index.html?room=${inviteCode}`;
+			});
+		</script>
+	</body>
+</html>

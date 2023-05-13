@@ -4,6 +4,14 @@ let token = null;
 let uid = String(Math.floor(Math.random() * 10000));
 let client, channel;
 
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
+const roomId = urlParams.get('room');
+
+if (!roomId) {
+	window.location = 'login.html';
+}
+
 let localStream, remoteStream;
 let peerConnection;
 
@@ -20,7 +28,7 @@ async function init() {
 	await client.login({ uid, token });
 
 	// channel is going to be dynamic
-	channel = client.createChannel('main');
+	channel = client.createChannel(roomId);
 	await channel.join();
 
 	// trigger an event when a user joins
