@@ -26,6 +26,8 @@ async function init() {
 	// trigger an event when a user joins
 	channel.on('MemberJoined', handleUserJoined);
 
+	channel.on('MemberLeft', handleUserLeft);
+
 	// trigger an event when a peer sends message
 	client.on('MessageFromPeer', handleMessageFromPeer);
 
@@ -93,6 +95,11 @@ async function handleUserJoined(memberId) {
 	console.log('A new user has joined', memberId);
 	// create and offer when a user joins
 	createOffer(memberId);
+}
+
+async function handleUserLeft(memberId) {
+	console.log('A user left: ', memberId);
+	document.querySelector('#user-2').srcObject = undefined;
 }
 
 async function handleMessageFromPeer(message, memberId) {
