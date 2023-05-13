@@ -16,20 +16,50 @@ body {
 	padding: 0;
 }
 
+/* video frame wrapper */
 .video__container {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 30rem));
+	justify-content: center;
+	align-items: center;
 	gap: 4rem;
-	margin: 4rem auto;
+	margin: 4rem auto 0;
 	padding: 2rem;
 	width: 100%;
 }
 
+/* individual video frame */
 .video {
 	width: 100%;
 	aspect-ratio: 1;
 }
 
+/* hide second video frame on initial page load */
 #user-2 {
 	display: none;
+}
+
+/* video controls container */
+.controls {
+	background-color: bisque;
+	width: 100%;
+	height: 6rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+}
+
+/* video controls wrapper */
+.control__container {
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icon {
+	width: 4rem;
+	aspect-ratio: 1;
+	object-fit: contain;
 }
