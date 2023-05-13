@@ -43,6 +43,7 @@ async function createConnection(memberId) {
 
 	remoteStream = new MediaStream();
 	document.querySelector('#user-2').srcObject = remoteStream;
+	document.querySelector('#user-2').style.display = 'block';
 
 	if (!localStream) {
 		localStream = await navigator.mediaDevices.getUserMedia({
@@ -99,7 +100,8 @@ async function handleUserJoined(memberId) {
 
 async function handleUserLeft(memberId) {
 	console.log('A user left: ', memberId);
-	document.querySelector('#user-2').srcObject = undefined;
+	// display second video frame when second user joins
+	document.querySelector('#user-2').style.display = 'none';
 }
 
 async function handleMessageFromPeer(message, memberId) {
@@ -147,5 +149,13 @@ async function AddAnswer(answer) {
 	if (!peerConnection.currentRemoteDescription)
 		peerConnection.setRemoteDescription(answer);
 }
+
+async function LeaveChannel() {
+	await channel.leave();
+	await client.logout();
+}
+
+// trigger a channel leave when a user closes the tab/browser
+window.addEventListener('beforeunload', LeaveChannel);
 
 init();

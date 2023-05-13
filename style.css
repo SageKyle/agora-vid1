@@ -18,8 +18,7 @@ body {
 
 .video__container {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	/* grid-template-columns: repeat(fit-content, minmax(15rem, 1fr)); */
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
 	gap: 4rem;
 	margin: 4rem auto;
 	padding: 2rem;
@@ -29,5 +28,8 @@ body {
 .video {
 	width: 100%;
 	aspect-ratio: 1;
-	background-color: bisque;
+}
+
+#user-2 {
+	display: none;
 }
