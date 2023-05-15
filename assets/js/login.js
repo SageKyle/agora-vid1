@@ -2,9 +2,18 @@ const form = document.querySelector('#join-form');
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
+	const description = document.querySelector('.desc');
+
 	let inviteCode = e.target.invite__link.value;
+	// remove whitespace and convert to lowercase
 	inviteCode = inviteCode.replace(/\s/g, '').toLocaleLowerCase();
-	window.location = `index.html?room=${inviteCode}`;
+
+	// chat ID should be at least six characters
+	if (inviteCode.length < 6) {
+		description.style.color = 'red';
+	} else {
+		window.location = `index.html?room=${inviteCode}`;
+	}
 });
 
 const startChatBtn = document.querySelector('.btn-secondary');

@@ -228,7 +228,6 @@ document.querySelector('#mic-btn').addEventListener('click', toggleMic);
 
 // share chat
 async function shareChat(url) {
-	console.log(url);
 	const shareData = {
 		title: "Let's Chat",
 		text: "Join a live meeting on Let's Chat",
@@ -245,7 +244,7 @@ async function shareChat(url) {
 
 document.querySelector('#share-btn').addEventListener('click', async () => {
 	const url = window.location.href;
-	shareChat(url);
+	await shareChat(url);
 });
 
 // trigger a channel leave when a user closes the tab/browser
