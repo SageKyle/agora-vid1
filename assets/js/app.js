@@ -2,9 +2,7 @@ const APP_ID = '679d2104958b4bb2b95b6d369952771e';
 
 let token = null;
 let uid = String(Math.floor(Math.random() * 10000));
-let client,
-	channel,
-	memberCount = 1;
+let client, channel;
 
 let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
@@ -45,6 +43,8 @@ async function init() {
 		video: true,
 		audio: true,
 	});
+	localStream.getAudioTracks().forEach((track) => (track.enabled = false));
+
 	document.querySelector('#user-1').srcObject = localStream;
 }
 
@@ -64,8 +64,14 @@ async function createConnection(memberId) {
 			video: true,
 			audio: true,
 		});
+		localStream.getTracks().forEach((track) => (track.enabled = false));
 		document.querySelector('#user-1').srcObject = localStream;
 	}
+
+	// const audioTrack = localStream
+	// 	.getTracks()
+	// 	.find((track) => track.kind == 'audio');
+	// audioTrack.enabled = false;
 
 	localStream.getTracks().forEach((track) => {
 		peerConnection.addTrack(track, localStream);

@@ -5,14 +5,27 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Let's Chat</title>
-		<link rel="stylesheet" href="assets/styles/style.css" />
+		<link rel="stylesheet" href="assets/styles/login.css" />
 	</head>
 	<body>
-		<form id="join-form">
-			<label for="invite__link">Enter invite link (without whitespace)</label>
-			<input type="text" required name="invite__link" class="invite__link" />
-			<button class="btn">join room</button>
-		</form>
+		<main class="main">
+			<form id="join-form">
+				<h1 class="heading">Welcome to Let's Chat</h1>
+				<label for="invite__link--label"
+					>Enter invite link (without whitespace)</label
+				>
+				<input
+					type="text"
+					required
+					name="invite__link"
+					class="invite__link--input"
+				/>
+				<div class="btn__wrapper">
+					<button class="btn">join chat</button>
+					<button class="btn">start chat</button>
+				</div>
+			</form>
+		</main>
 
 		<script>
 			const form = document.querySelector('#join-form');
