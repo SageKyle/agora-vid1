@@ -43,25 +43,45 @@ body {
 
 /* video controls container */
 .controls {
-	background-color: bisque;
+	/* background-color: bisque; */
 	width: 100%;
-	height: 6rem;
+	/* height: 6rem; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 2rem;
+	position: fixed;
+	bottom: 4rem;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 /* video controls wrapper */
 .control__container {
-	width: fit-content;
+	background-color: hsl(200, 93%, 55%);
+	padding: 1.5rem;
+	border-radius: 50%;
+	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transition: all ease-in-out 0.2s;
+}
+
+.control__container:hover {
+	background-color: hsl(200, 93%, 45%);
 }
 
 .icon {
-	width: 4rem;
+	width: 3rem;
 	aspect-ratio: 1;
 	object-fit: contain;
+}
+
+.control__container.danger-color {
+	background-color: hsl(2, 98%, 57%);
+}
+
+.danger-color > .icon {
+	filter: invert(90%);
 }

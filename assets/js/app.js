@@ -43,7 +43,7 @@ async function init() {
 
 	localStream = await navigator.mediaDevices.getUserMedia({
 		video: true,
-		audio: false,
+		audio: true,
 	});
 	document.querySelector('#user-1').srcObject = localStream;
 }
@@ -62,7 +62,7 @@ async function createConnection(memberId) {
 	if (!localStream) {
 		localStream = await navigator.mediaDevices.getUserMedia({
 			video: true,
-			audio: false,
+			audio: true,
 		});
 		document.querySelector('#user-1').srcObject = localStream;
 	}
@@ -183,6 +183,42 @@ async function createNewVideoFrame(memberId) {
 	// add element to parent wrapper element
 	container.appendChild(newFrame);
 }
+
+// toggle video camera
+async function toggleCamera() {
+	const cameraBtn = document.querySelector('#camera-btn');
+	const videoTrack = localStream
+		.getTracks()
+		.find((track) => track.kind === 'video');
+
+	if (videoTrack.enabled) {
+		videoTrack.enabled = false;
+		cameraBtn.classList.add('danger-color');
+	} else {
+		videoTrack.enabled = true;
+		cameraBtn.classList.remove('danger-color');
+	}
+}
+
+document.querySelector('#camera-btn').addEventListener('click', toggleCamera);
+
+// toggle mic
+async function toggleMic() {
+	const micBtn = document.querySelector('#mic-btn');
+	const audioTrack = localStream
+		.getTracks()
+		.find((track) => track.kind === 'audio');
+
+	if (audioTrack.enabled) {
+		audioTrack.enabled = false;
+		micBtn.classList.add('danger-color');
+	} else {
+		audioTrack.enabled = true;
+		micBtn.classList.remove('danger-color');
+	}
+}
+
+document.querySelector('#mic-btn').addEventListener('click', toggleMic);
 
 // trigger a channel leave when a user closes the tab/browser
 window.addEventListener('beforeunload', LeaveChannel);
