@@ -32,11 +32,13 @@ body {
 .video {
 	width: 100%;
 	aspect-ratio: 1;
+	object-fit: fill;
+	border-radius: 1rem;
 }
 
-/* hide second video frame on initial page load */
-#user-2 {
-	display: none;
+/* chat host */
+.host {
+	border: 4px solid hsl(200, 50%, 50%);
 }
 
 /* video controls container */

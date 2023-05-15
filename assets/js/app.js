@@ -2,7 +2,9 @@ const APP_ID = '679d2104958b4bb2b95b6d369952771e';
 
 let token = null;
 let uid = String(Math.floor(Math.random() * 10000));
-let client, channel;
+let client,
+	channel,
+	memberCount = 1;
 
 let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
@@ -49,9 +51,13 @@ async function init() {
 async function createConnection(memberId) {
 	peerConnection = new RTCPeerConnection(servers);
 
+	// initialize new video frame
+	createNewVideoFrame(memberId);
+	const newMmber = document.querySelector(`#user-${memberId}`);
+
 	remoteStream = new MediaStream();
-	document.querySelector('#user-2').srcObject = remoteStream;
-	document.querySelector('#user-2').style.display = 'block';
+	newMmber.srcObject = remoteStream;
+	newMmber.style.display = 'block';
 
 	if (!localStream) {
 		localStream = await navigator.mediaDevices.getUserMedia({
@@ -108,8 +114,8 @@ async function handleUserJoined(memberId) {
 
 async function handleUserLeft(memberId) {
 	console.log('A user left: ', memberId);
-	// display second video frame when second user joins
-	document.querySelector('#user-2').style.display = 'none';
+	// hide video frame when user leaves
+	document.querySelector(`#user-${memberId}`).style.display = 'none';
 }
 
 async function handleMessageFromPeer(message, memberId) {
@@ -161,6 +167,21 @@ async function AddAnswer(answer) {
 async function LeaveChannel() {
 	await channel.leave();
 	await client.logout();
+}
+
+// create a new video element for the new user
+async function createNewVideoFrame(memberId) {
+	const container = document.querySelector('.video__container');
+	const newFrame = document.createElement('video');
+
+	// set video element properties
+	newFrame.id = `user-${memberId}`;
+	newFrame.classList.add('video');
+	newFrame.autoplay = true;
+	newFrame.playsInline = true;
+
+	// add element to parent wrapper element
+	container.appendChild(newFrame);
 }
 
 // trigger a channel leave when a user closes the tab/browser
