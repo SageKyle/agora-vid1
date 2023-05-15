@@ -49,9 +49,28 @@
 				</a>
 
 				<!-- video control -->
-				<article class="control__container" title="Share Chat" id="share-btn">
-					<img src="assets/icons/share.svg" alt="share chat" class="icon" />
-				</article>
+				<div class="share__wrapper">
+					<div class="share__group hidden">
+						<h4 class="share__option share-id">
+							<img
+								src="assets/icons/share-id.svg"
+								alt="share chat ID"
+								class="icon"
+							/>share ID
+						</h4>
+						<h4 class="share__option share-link">
+							<img
+								src="assets/icons/share-link.svg"
+								alt="share chat link"
+								class="icon"
+							/>share link
+						</h4>
+					</div>
+
+					<article class="control__container" title="Share Chat" id="share-btn">
+						<img src="assets/icons/share.svg" alt="share chat" class="icon" />
+					</article>
+				</div>
 			</section>
 		</main>
 		<script src="assets/js/agora-rtm-sdk-1.5.1.js"></script>

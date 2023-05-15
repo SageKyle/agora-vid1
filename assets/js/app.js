@@ -228,6 +228,7 @@ document.querySelector('#mic-btn').addEventListener('click', toggleMic);
 
 // share chat
 async function shareChat(url) {
+	// TODO format chatData to be different if it's an ID
 	const shareData = {
 		title: "Let's Chat",
 		text: "Join a live meeting on Let's Chat",
@@ -242,9 +243,22 @@ async function shareChat(url) {
 	}
 }
 
-document.querySelector('#share-btn').addEventListener('click', async () => {
-	const url = window.location.href;
-	await shareChat(url);
+document.querySelector('#share-btn').addEventListener('click', () => {
+	document.querySelector('.share__group').classList.toggle('hidden');
+});
+
+document.querySelector('.share__group').addEventListener('click', async (e) => {
+	const ChatURL = window.location.href;
+	const queryId = window.location.search;
+	const ChatId = queryId.slice(6);
+
+	if (e.target.classList.contains('share-id')) {
+		await shareChat(ChatId);
+	}
+
+	if (e.target.classList.contains('share-link')) {
+		await shareChat(ChatURL);
+	}
 });
 
 // trigger a channel leave when a user closes the tab/browser
