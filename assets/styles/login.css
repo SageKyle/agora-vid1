@@ -8,6 +8,7 @@ body {
 	width: 100%;
 	overflow-x: hidden;
 	position: relative;
+	font-family: 'Gill Sans', 'Gill Sans MT', sans-serif;
 }
 
 * {
@@ -24,7 +25,7 @@ body {
 }
 
 #join-form {
-	width: 80%;
+	width: 90%;
 	max-width: 50rem;
 	margin: 4rem auto;
 	display: flex;

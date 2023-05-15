@@ -43,7 +43,7 @@ async function init() {
 		video: true,
 		audio: true,
 	});
-	localStream.getAudioTracks().forEach((track) => (track.enabled = false));
+	// localStream.getAudioTracks().forEach((track) => (track.enabled = false));
 
 	document.querySelector('#user-1').srcObject = localStream;
 }
@@ -64,7 +64,7 @@ async function createConnection(memberId) {
 			video: true,
 			audio: true,
 		});
-		localStream.getTracks().forEach((track) => (track.enabled = false));
+		// localStream.getTracks().forEach((track) => (track.enabled = false));
 		document.querySelector('#user-1').srcObject = localStream;
 	}
 
