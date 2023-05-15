@@ -86,3 +86,10 @@ body {
 .danger-color > .icon {
 	filter: invert(90%);
 }
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: hsl(202, 21%, 10%);
+		color: hsl(200, 33%, 98%);
+	}
+}
