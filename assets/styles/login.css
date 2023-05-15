@@ -86,7 +86,8 @@ body {
 		color: hsl(200, 33%, 98%);
 	}
 
-	.invite__link--input {
+	.invite__link--input,
+	.invite__link--input::placeholder {
 		color: hsl(0, 0%, 98%);
 	}
 }

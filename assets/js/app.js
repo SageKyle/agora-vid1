@@ -227,13 +227,16 @@ async function toggleMic() {
 document.querySelector('#mic-btn').addEventListener('click', toggleMic);
 
 // share chat
-async function shareChat(url) {
-	// TODO format chatData to be different if it's an ID
-	const shareData = {
-		title: "Let's Chat",
-		text: "Join a live meeting on Let's Chat",
-		url,
-	};
+async function shareChat(url, type) {
+	// if it's a link, add metadata else share only text
+	const shareData =
+		type === 'link'
+			? {
+					title: "Let's Chat",
+					text: "Join a live chat on Let's Chat",
+					url,
+			  }
+			: { text: url };
 
 	try {
 		await navigator.share(shareData);
@@ -253,11 +256,11 @@ document.querySelector('.share__group').addEventListener('click', async (e) => {
 	const ChatId = queryId.slice(6);
 
 	if (e.target.classList.contains('share-id')) {
-		await shareChat(ChatId);
+		await shareChat(ChatId, 'id');
 	}
 
 	if (e.target.classList.contains('share-link')) {
-		await shareChat(ChatURL);
+		await shareChat(ChatURL, 'link');
 	}
 });
 
