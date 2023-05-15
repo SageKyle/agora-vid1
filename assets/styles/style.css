@@ -112,7 +112,7 @@ body {
 	display: flex;
 	align-items: center;
 	font-size: 1.4rem;
-	margin-bottom: 0.5rem;
+	margin-top: 1rem;
 	text-transform: capitalize;
 	transition: all ease-in-out 0.2s;
 }

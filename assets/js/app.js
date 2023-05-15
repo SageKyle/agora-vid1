@@ -233,7 +233,7 @@ async function shareChat(url, type) {
 		type === 'link'
 			? {
 					title: "Let's Chat",
-					text: "Join a live chat on Let's Chat",
+					text: "Join a live video chat on Let's Chat",
 					url,
 			  }
 			: { text: url };
@@ -246,19 +246,22 @@ async function shareChat(url, type) {
 	}
 }
 
+// togggle share options
 document.querySelector('#share-btn').addEventListener('click', () => {
 	document.querySelector('.share__group').classList.toggle('hidden');
 });
 
+// share chat event handler
 document.querySelector('.share__group').addEventListener('click', async (e) => {
 	const ChatURL = window.location.href;
-	const queryId = window.location.search;
-	const ChatId = queryId.slice(6);
+	const ChatId = window.location.search.slice(6);
 
+	// share id
 	if (e.target.classList.contains('share-id')) {
 		await shareChat(ChatId, 'id');
 	}
 
+	// share url
 	if (e.target.classList.contains('share-link')) {
 		await shareChat(ChatURL, 'link');
 	}
