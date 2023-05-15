@@ -226,6 +226,28 @@ async function toggleMic() {
 
 document.querySelector('#mic-btn').addEventListener('click', toggleMic);
 
+// share chat
+async function shareChat(url) {
+	console.log(url);
+	const shareData = {
+		title: "Let's Chat",
+		text: "Join a live meeting on Let's Chat",
+		url,
+	};
+
+	try {
+		await navigator.share(shareData);
+	} catch (err) {
+		if (navigator.canShare == false) alert('not supported');
+		console.log(err);
+	}
+}
+
+document.querySelector('#share-btn').addEventListener('click', async () => {
+	const url = window.location.href;
+	shareChat(url);
+});
+
 // trigger a channel leave when a user closes the tab/browser
 window.addEventListener('beforeunload', LeaveChannel);
 

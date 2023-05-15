@@ -28,15 +28,6 @@
 			</form>
 		</main>
 
-		<script>
-			const form = document.querySelector('#join-form');
-
-			form.addEventListener('submit', (e) => {
-				e.preventDefault();
-				let inviteCode = e.target.invite__link.value;
-				inviteCode = inviteCode.replace(/\s/g, '');
-				window.location = `index.html?room=${inviteCode}`;
-			});
-		</script>
+		<script src="/assets/js/login.js"></script>
 	</body>
 </html>
